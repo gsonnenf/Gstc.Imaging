@@ -59,11 +59,11 @@ namespace Gstc.Imaging.Fits {
         }
 
         private static IpcPixelFormatDefault GetIpcFormatType(int channels, int bitSize) {
-            if (bitSize != 8 ||
-                bitSize != 16 ||
-                bitSize != 32 ||
-                bitSize != -32 ||
-                bitSize != 64) throw new NotSupportedException("Bitpix field in pix is not 8,16,32,-32 or 64. This is an unsupported value.");
+            if (bitSize != 8 &&
+                bitSize != 16 &&
+                bitSize != 32 &&
+                bitSize != -32 &&
+                bitSize != 64) throw new NotSupportedException("Bitpix field in pix is not 8,16,32,-32 or 64. BitSize " + bitSize + " is an unsupported value.");
 
 
             if (channels == 1) {

@@ -19,6 +19,10 @@
             <local:OpenCvTest></local:OpenCvTest>
         </TabItem>
 
+        <TabItem Header="Fits">
+            <local:FitsControl></local:FitsControl>
+        </TabItem>
+
     </TabControl>
 </Window>
 

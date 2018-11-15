@@ -8,19 +8,16 @@ namespace Gstc.Imaging.Extensions
     public static class IpcPixelFormatExtension {
 
 
+        //Extensions
 
+        public static PixelFormat ToMediaPixelFormat(this IpcPixelFormat ipcPixelFormat) =>
+            ExtUtil.IpcPixelFormatToExternalFormat(ipcPixelFormat, IpcPixelFormatToMediaPixelFormatDictionary);
 
-        public static PixelFormat ToMediaPixelFormat(this IpcPixelFormat ipcPixelFormat) {
-            try {
-                if (!(ipcPixelFormat is IpcPixelFormatDefault)) throw new Exception();
-                return IpcPixelFormatToMediaPixelFormatDictionary[(IpcPixelFormatDefault)ipcPixelFormat];
-            } catch (NotSupportedException e) { throw e; } catch { throw new NotSupportedException("Type: " + ipcPixelFormat.IpcPixelFormatType + " is not supported by " + typeof(PixelFormat).FullName); }
-        }
+        public static IpcPixelFormat ToIpcPixelFormat(this PixelFormat pixelFormat) =>
+            ExtUtil.ExternalFormatToIpcPixelFormatReverseLookup(pixelFormat, IpcPixelFormatToMediaPixelFormatDictionary);
+       
 
-        public static IpcPixelFormat ToIpcPixelFormat(this PixelFormat pixelFormat) {
-            try { return IpcPixelFormatToMediaPixelFormatDictionary.First(x => x.Value == pixelFormat).Key; } 
-            catch { throw new NotSupportedException("Type: " + pixelFormat + " is not supported by " + typeof(IpcPixelFormatType).FullName);  }
-        }
+        //Dictionaries
 
         public static Dictionary<IpcPixelFormatDefault, PixelFormat> IpcPixelFormatToMediaPixelFormatDictionary =
             new Dictionary<IpcPixelFormatDefault, PixelFormat>() {

@@ -6,24 +6,11 @@ using Gstc.Imaging.Extensions;
 namespace Gstc.Imaging.Net {
     public static class IpcPixelFormatExtension {
 
-        public static System.Drawing.Imaging.PixelFormat ToDrawingPixelFormat(this IpcPixelFormat ipcPixelFormat) {
-            try {
-                if (!(ipcPixelFormat is IpcPixelFormatDefault)) throw new Exception();
-                return IpcPixelFormatToDrawingPixelFormatDictionary[(IpcPixelFormatDefault)ipcPixelFormat];
-            } catch (NotSupportedException e) { throw e; } catch { throw new NotSupportedException("Type: " + ipcPixelFormat.IpcPixelFormatType + " is not supported by " + typeof(PixelFormat).FullName); }
-        }
-
-        public static NativeMethods.BI ToGdiBiFormat(this IpcPixelFormat ipcPixelFormat) {
-            try {
-                if (!(ipcPixelFormat is IpcPixelFormatDefault)) throw new Exception();
-                return IpcPixelFormatToGdiBiDictionary[ipcPixelFormat as IpcPixelFormatDefault];
-            } catch { throw new NotSupportedException("Type: " + ipcPixelFormat.IpcPixelFormatType + " is not supported by " + typeof(NativeMethods.BI).FullName); }
-
-        }
-
-        public static NativeMethods.BI ToGdiBiFormat2(this IpcPixelFormat ipcPixelFormat) =>
-            ExtUtil.MapFromIpcPixelFormat(ipcPixelFormat, IpcPixelFormatToGdiBiDictionary);
-
+        public static System.Drawing.Imaging.PixelFormat ToDrawingPixelFormat(this IpcPixelFormat ipcPixelFormat) =>
+        ExtUtil.IpcPixelFormatToExternalFormat(ipcPixelFormat, IpcPixelFormatToDrawingPixelFormatDictionary);
+        
+        public static NativeMethods.BI ToGdiBiFormat(this IpcPixelFormat ipcPixelFormat) =>
+            ExtUtil.IpcPixelFormatToExternalFormat(ipcPixelFormat, IpcPixelFormatToGdiBiDictionary);
             
         public static Dictionary<IpcPixelFormatDefault, System.Drawing.Imaging.PixelFormat> IpcPixelFormatToDrawingPixelFormatDictionary =
             new Dictionary<IpcPixelFormatDefault, System.Drawing.Imaging.PixelFormat>() {

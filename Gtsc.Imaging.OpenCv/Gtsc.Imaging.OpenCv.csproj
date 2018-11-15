@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\IpcImageExtension.cs" />
+    <Compile Include="Extensions\IpcImageFormatExtensions.cs" />
     <Compile Include="IpcImageMat.cs" />
     <Compile Include="Extensions\MatTypeExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

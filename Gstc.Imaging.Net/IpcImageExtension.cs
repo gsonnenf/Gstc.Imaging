@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -16,12 +17,11 @@ namespace Gstc.Imaging.Net {
 
         #region Extensions
 
-        public static WriteableBitmap GetWriteableBitmap(this IpcImage ipcImage) {
-            var dictionary = WritableBitmapDictionary;
-            if (dictionary.TryGetValue(ipcImage, out var bitmap)) return bitmap;
-            bitmap = CreateWriteableBitmap(ipcImage);
-            dictionary[ipcImage] = bitmap;
+ 
 
+        public static WriteableBitmap GetWriteableBitmap(this IpcImage ipcImage) {
+            if ( ExtUtil.GetOrCreateMember(out var bitmap, ipcImage, WritableBitmapDictionary, CreateWriteableBitmap) ) return bitmap;
+       
             ipcImage.OnUpdate += () => {
                 var rect = new Int32Rect(0, 0, ipcImage.Width, ipcImage.Height);
                 bitmap.WritePixels(rect, ipcImage.DataPtr, ipcImage.BufferSize, ipcImage.Stride);
@@ -29,35 +29,20 @@ namespace Gstc.Imaging.Net {
                 bitmap.AddDirtyRect(rect);
                 bitmap.Unlock();
             };
-            ipcImage.OnDispose += () => dictionary.Remove(ipcImage);
 
             return bitmap;
         }
 
         public static InteropBitmap GetInteropBitmap(this IpcImage ipcImage) {
-            var dictionary = InteropBitmapDictionary;
-            if (dictionary.TryGetValue(ipcImage, out var bitmap)) return bitmap;
-
-            bitmap = CreateInteropBitmap(ipcImage);
-
-            dictionary[ipcImage] = bitmap;
-            ipcImage.OnUpdate += () => bitmap.Invalidate();
-            ipcImage.OnDispose += () => dictionary.Remove(ipcImage);
-
+            if (ExtUtil.GetOrCreateMember(out var bitmap, ipcImage, InteropBitmapDictionary, CreateInteropBitmap)) return bitmap;
+            ipcImage.OnUpdate += () => bitmap.Invalidate();         
             return bitmap;
         }
 
         public static Bitmap GetDrawingBitmap(this IpcImage ipcImage) {
-            var dictionary = DrawingBitmapDictionary;
-            if (dictionary.TryGetValue(ipcImage, out var bitmap)) return bitmap;
-            bitmap = CreateDrawingBitmap(ipcImage);
-            dictionary[ipcImage] = bitmap;
 
-            ipcImage.OnDispose += () => {
-                dictionary.Remove(ipcImage);
-                bitmap.Dispose();
-            };
-
+            if (ExtUtil.GetOrCreateMember(out var bitmap, ipcImage, DrawingBitmapDictionary, CreateDrawingBitmap)) return bitmap;
+            ipcImage.OnDispose += () => bitmap.Dispose();
             return bitmap;
         }
 
