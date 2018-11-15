@@ -1,0 +1,4 @@
+﻿   // Notes on format: 
+   http://heasarc.gsfc.nasa.gov/docs/fcg/standard_dict.html
+        // http://archive.stsci.edu/fits/fits_standard/
+        //https://archive.stsci.edu/fits/fits_standard/node39.html

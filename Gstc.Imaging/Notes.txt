@@ -1,0 +1,43 @@
+﻿
+
+
+------
+CreateFileMapping .NET core code example
+https://referencesource.microsoft.com/#system.core/Microsoft/Win32/UnsafeNativeMethods.cs,097c03b9633b19cb
+
+-----
+GDI Links
+
+https://social.msdn.microsoft.com/Forums/vstudio/en-US/8dd03d5a-5355-4301-ace0-4c7fad1e3642/how-to-createdibsection-that-stores-8-bits-gray-scale-image-?forum=windowsgeneraldevelopmentissues
+
+
+https://www.pinvoke.net/default.aspx/gdi32/createdibsection.html?diff=y
+Article on different ways to make DIBitmap.
+
+https://blogs.msdn.microsoft.com/oldnewthing/20170331-00/?p=95875
+"If it's a device-independent bitmap you want, then the function to use is Create­DIB­Section. The simplest use of this function creates a device-independent bitmap and gives you a pointer to the in-memory pixel buffer. You can then manipulate the pixel buffer directly, say, by memcpying the bytes from your original buffer.
+The fancier use of this function creates a device-independent bitmap around existing memory. The memory needs to be in a file mapping object, either a file mapping object created from a file or (more often) a file mapping object created from the page file (in other words, a shared memory block). You can then specify the byte offset within the file mapping at which the pixel buffer starts. In this case, the memory is not copied; the memory in the file mapping object is the backing memory for the bitmap. If you modify the bitmap, then the contents of the file mapping object change; if you modify the contents of the file mapping object, you modify the bitmap."
+
+HDC for createDIBSection can be null
+https://stackoverflow.com/questions/51757618/if-a-dibsection-is-independent-of-any-device-why-does-it-need-a-device-context
+
+Pinvokegdi
+https://github.com/OpenLiveWriter/OpenLiveWriter/blob/87c151e9b1e3ab82c3f4996e8aad7a198cd97745/src/managed/OpenLiveWriter.Interop/Com/Ribbon/ImageLoader.cs
+
+
+CreateDIBSection + CreateFileMapping example
+https://github.com/barbeque/DwayneNeed/blob/57b545e1e2a46e406386a17bea41e363e787d63b/Microsoft.DwayneNeed/Interop/RedirectedWindow.cs
+
+
+Memory device context
+https://docs.microsoft.com/en-us/windows/desktop/gdi/memory-device-contexts
+//How to create Graphics from a DeviceContext
+https://docs.microsoft.com/en-us/dotnet/api/system.drawing.graphics.fromhdc?redirectedfrom=MSDN&view=netframework-4.7.2#System_Drawing_Graphics_FromHdc_System_IntPtr_
+
+//Device Context tutorial
+http://www.winprog.org/tutorial/bitmaps.html
+
+--- 
+
+Interop Bitmap performance / writeable bitmap?
+//https://stackoverflow.com/questions/19905831/what-is-the-most-performant-way-to-render-unmanaged-video-frames-in-wpf

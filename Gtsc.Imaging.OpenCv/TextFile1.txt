@@ -1,0 +1,4 @@
+﻿
+
+///Shared memory openCV usage in Linux
+https://stackoverflow.com/questions/3906437/opencv-matrix-into-shared-memory
