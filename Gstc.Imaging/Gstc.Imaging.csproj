@@ -53,6 +53,7 @@
     <Compile Include="IpcPixelFormatCustom.cs" />
     <Compile Include="IpcPixelFormatDefault.cs" />
     <Compile Include="IpcPixelFormatEnum.cs" />
+    <Compile Include="IpcPixelFormats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

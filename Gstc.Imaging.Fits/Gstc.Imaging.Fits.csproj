@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FitsExtension.cs" />
+    <Compile Include="FitsData.cs" />
     <Compile Include="IpcImageFits.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Images\ImageUris.cs" />
+    <Compile Include="PixelFormatTest.cs" />
     <Compile Include="TestLoadFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

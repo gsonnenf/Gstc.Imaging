@@ -6,11 +6,12 @@ namespace Gstc.Imaging.Fits.UnitTest {
     [TestClass]
     public class UnitTest1 {
         [TestMethod]
-        public void TestMethod1() {
+        public void LoadSingleFrame() {
             IpcImageFits ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024x1024_32f);
+        }
 
-
-
+        public void LoadMultipleFrames() {
+            IpcImageFits ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024x1024_32f);
         }
     }
 }

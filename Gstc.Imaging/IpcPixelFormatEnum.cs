@@ -48,6 +48,7 @@ namespace Gstc.Imaging {
     }
 
     public enum IpcChannelDataType {
+        Custom,
         UInt,
         Int,
         Float,
