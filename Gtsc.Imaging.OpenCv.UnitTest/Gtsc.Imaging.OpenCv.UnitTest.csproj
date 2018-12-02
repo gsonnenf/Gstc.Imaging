@@ -62,7 +62,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\ImageUris.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,23 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\2048x2048.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\TestImageIndex8.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\TestPatternBGR24.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\TestPatternBGR32.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\TestPatternGrayscale8bpp.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Gstc.Imaging.UnitTest.Images\Gstc.Imaging.UnitTest.Images.csproj">
+      <Project>{5C902526-9848-4D8C-8E52-630B52F6849E}</Project>
+      <Name>Gstc.Imaging.UnitTest.Images</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gstc.Imaging\Gstc.Imaging.csproj">
       <Project>{EDD957B9-9E02-464F-810A-C8A09AB2D03A}</Project>
       <Name>Gstc.Imaging</Name>

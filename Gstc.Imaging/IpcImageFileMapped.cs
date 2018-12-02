@@ -9,26 +9,27 @@ namespace Gstc.Imaging {
     public class IpcImageFileMapped : IpcImage {
         private readonly int _bufferSize;
 
-        private IntPtr _mapPtr;
-        private IntPtr _viewIntPtr;
+        private IntPtr _mapPtr = IntPtr.Zero;
+        private IntPtr _viewPtr = IntPtr.Zero;
 
-        public IpcImageFileMapped(int width, int height, IpcPixelFormat ipcPixelFormatDefault, int stride = 0) {
+        public IpcImageFileMapped(int width, int height, IpcPixelFormat ipcPixelFormat, int stride = 0) {
             Height = height;
             Width = width;
-            IpcPixelFormat = ipcPixelFormatDefault;
+            IpcPixelFormat = ipcPixelFormat;
 
             //Calculates stride
             if (stride <= 0) Stride = (int) Math.Ceiling(width * BytesPerPixel);
-            else if (stride > 0 && stride < width * ipcPixelFormatDefault.BitsPerPixel / 8.0)
+            else if (stride > 0 && stride < width * ipcPixelFormat.BytesPerPixel)
                 throw new ArgumentOutOfRangeException(@"Stride must be greater or equal to Width in memory.");
-            else if (stride <= width * ipcPixelFormatDefault.BitsPerPixel / 8.0) Stride = stride;
+            else if (stride <= width * ipcPixelFormat.BytesPerPixel) Stride = stride;
 
             _bufferSize = height * Stride;
-            _viewIntPtr = CreateFileMappedMemory(_bufferSize);
+            CreateFileMappedMemory(_bufferSize);
         }
 
-        public override IntPtr DataPtr => _viewIntPtr;
-        public override IntPtr SectionPtr => _mapPtr;
+        public IntPtr ViewPtr => _viewPtr;
+        public override IntPtr DataPtr => _viewPtr;
+        public override IntPtr MapPtr => _mapPtr;
         public override int BufferSize => _bufferSize;
         public override int Width { get; }
         public override int Height { get; }
@@ -41,7 +42,7 @@ namespace Gstc.Imaging {
         public override IpcPixelFormat IpcPixelFormat { get; }
 
         public new static IpcImageFileMapped LoadFromFile(Uri filePathUri) {
-            using (Stream stream = File.OpenRead(filePathUri.OriginalString)) {
+            using (Stream stream = File.OpenRead(filePathUri.LocalPath)) {
                 var decoder = BitmapDecoder.Create(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                 var bitmapImage = decoder.Frames[0];
 
@@ -80,20 +81,28 @@ namespace Gstc.Imaging {
 
         #region Private
 
-        private IntPtr CreateFileMappedMemory(int numberOfBytes) {
+        private void CreateFileMappedMemory(int numberOfBytes) {
             //MemoryMappedFile mmf = MemoryMappedFile.CreateNew("test", 100, MemoryMappedFileAccess.ReadWrite); //Uses safe buffer with bounds checking, slow.
             //string name = null; // Guid.NewGuid().ToString();
-            _mapPtr = NativeMethods.CreateFileMapping(NativeMethods.INVALID_HANDLE_VALUE, IntPtr.Zero,
-                NativeMethods.FileMapProtection.PageReadWrite, 0, (uint) numberOfBytes, null);
-            _viewIntPtr = NativeMethods.MapViewOfFile(_mapPtr, NativeMethods.FileMapAccess.FileMapAllAccess, 0, 0, 0);
-            //if (_viewIntPtr == IntPtr.Zero) { throw new Exception("MapViewOfFile", new Win32Exception(Marshal.GetLastWin32Error())); }
-            return _viewIntPtr;
+            _mapPtr = NativeMethods.CreateFileMapping(
+                NativeMethods.INVALID_HANDLE_VALUE, 
+                IntPtr.Zero,
+                NativeMethods.FileMapProtection.PageReadWrite, 
+                0, 
+                (uint) numberOfBytes, 
+                null);
+
+            _viewPtr = NativeMethods.MapViewOfFile(
+                _mapPtr, 
+                NativeMethods.FileMapAccess.FileMapAllAccess, 
+                0, 0, 0);
+            //if (_viewPtr == IntPtr.Zero) { throw new Exception("MapViewOfFile", new Win32Exception(Marshal.GetLastWin32Error())); }
         }
 
         ~IpcImageFileMapped() {
-            if (_viewIntPtr != IntPtr.Zero) NativeMethods.UnmapViewOfFile(_viewIntPtr);
+            if (_viewPtr != IntPtr.Zero) NativeMethods.UnmapViewOfFile(_viewPtr);
             if (_mapPtr != IntPtr.Zero) NativeMethods.CloseHandle(_mapPtr);
-            _viewIntPtr = _mapPtr = IntPtr.Zero;
+            _viewPtr = _mapPtr = IntPtr.Zero;
             //TODO: ? UnmapViewOfFile()
         }
 

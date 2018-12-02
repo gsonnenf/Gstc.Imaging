@@ -34,12 +34,14 @@ namespace Gstc.Imaging {
         Rgba256,
 
         RgbFloat24,
-        RgbFloat32,
         RgbFloat48,
-        RgbFloat64,
         RgbFloat96,
-        RgbFloat128,
+        RgbFloat32,
         RgbFloat192,
+
+        RgbFloat64,      
+        RgbFloat128,
+        RgbFloat256,
 
         RgbaFloat32,
         RgbaFloat64,

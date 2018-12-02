@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Imaging.Net", "Gstc.Im
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtsc.Imaging.Net.UnitTest", "Gtsc.Imaging.Net.UnitTest\Gtsc.Imaging.Net.UnitTest.csproj", "{BBBD6793-230B-4445-8C41-AB811BCCD45E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Imaging.UnitTest.Images", "Gstc.Imaging.UnitTest.Images\Gstc.Imaging.UnitTest.Images.csproj", "{5C902526-9848-4D8C-8E52-630B52F6849E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BBBD6793-230B-4445-8C41-AB811BCCD45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBBD6793-230B-4445-8C41-AB811BCCD45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBBD6793-230B-4445-8C41-AB811BCCD45E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C902526-9848-4D8C-8E52-630B52F6849E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C902526-9848-4D8C-8E52-630B52F6849E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C902526-9848-4D8C-8E52-630B52F6849E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C902526-9848-4D8C-8E52-630B52F6849E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

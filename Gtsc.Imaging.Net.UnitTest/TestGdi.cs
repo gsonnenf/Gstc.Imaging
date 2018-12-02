@@ -1,7 +1,7 @@
 ﻿using System;
 using Gstc.Imaging;
 using Gstc.Imaging.Net;
-using Gtsc.Imaging.Net.UnitTest.Images;
+using Gstc.Imaging.UnitTest.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Color = System.Drawing.Color;
 
@@ -11,7 +11,7 @@ namespace Gtsc.Imaging.Net.UnitTest {
 
         [TestMethod]
         public void CreateMemorySectionTest() {
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.BGR32);
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.Bgr32);
             
 
             var brush = new System.Drawing.SolidBrush(Color.FromArgb(255,2,2,2));

@@ -74,7 +74,7 @@ namespace Gstc.Imaging.Net {
 
         public static InteropBitmap CreateInteropBitmap(IpcImage ipcImage) {
             var bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromMemorySection(
-                ipcImage.SectionPtr,
+                ipcImage.MapPtr,
                 ipcImage.Width,
                 ipcImage.Height,
                 ipcImage.IpcPixelFormat.ToMediaPixelFormat(),
@@ -137,7 +137,7 @@ _hBitmap = NativeMethods.CreateDIBSection(IntPtr.Zero,
 ref bitmapInfo,
 NativeMethods.DIB.RGB_COLORS,
 out _ppvBits,
-SectionPtr,
+MapPtr,
 0);
 
 //IntPtr hdcScreen = NativeMethods.GetDC(HWND.NULL);

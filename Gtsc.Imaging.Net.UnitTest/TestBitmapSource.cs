@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Windows;
 using Gstc.Imaging;
 using Gstc.Imaging.Net;
-using Gtsc.Imaging.Net.UnitTest.Images;
+using Gstc.Imaging.UnitTest.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gtsc.Imaging.Net.UnitTest {
@@ -13,7 +13,7 @@ namespace Gtsc.Imaging.Net.UnitTest {
 
         [TestMethod]
         public void InteropBitmapTest() {
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.BGR32);
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.Bgr32);
             var bitmap = ipcImage.GetInteropBitmap();
             var pixelArray = new UInt32[50];
             bitmap.CopyPixels(new Int32Rect(0,0,5,10), pixelArray, ipcImage.Stride,0);
@@ -32,7 +32,7 @@ namespace Gtsc.Imaging.Net.UnitTest {
 
         [TestMethod]
         public void WriteableBitmapTest() {
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.BGR32);
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.Bgr32);
             var bitmap = ipcImage.GetWriteableBitmap();
             var pixelArray = new UInt32[50];
             bitmap.CopyPixels(new Int32Rect(0, 0, 5, 10), pixelArray, ipcImage.Stride, 0);

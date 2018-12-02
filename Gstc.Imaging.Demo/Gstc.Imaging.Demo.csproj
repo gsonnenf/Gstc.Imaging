@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFITS_v1.1, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenCvSharp3-AnyCPU.3.4.1.20180830\lib\net46\OpenCvSharp.dll</HintPath>
     </Reference>
@@ -98,7 +99,6 @@
     <Compile Include="InteropGdi.xaml.cs">
       <DependentUpon>InteropGdi.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Images\ImageUris.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -130,12 +130,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Images\FOCx38i0101t_c0f.fits">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Images\WFPC2u5780205r_c0fx.fits">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -146,11 +140,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\2048x2048.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Gstc.Imaging.Fits\Gstc.Imaging.Fits.csproj">
       <Project>{b6590886-c271-4cd5-8b46-1f3682c64813}</Project>
       <Name>Gstc.Imaging.Fits</Name>
@@ -158,6 +147,10 @@
     <ProjectReference Include="..\Gstc.Imaging.Net\Gstc.Imaging.Net.csproj">
       <Project>{8326DBA5-524C-46D3-8F4A-A5CC431AF587}</Project>
       <Name>Gstc.Imaging.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gstc.Imaging.UnitTest.Images\Gstc.Imaging.UnitTest.Images.csproj">
+      <Project>{5C902526-9848-4D8C-8E52-630B52F6849E}</Project>
+      <Name>Gstc.Imaging.UnitTest.Images</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gstc.Imaging\Gstc.Imaging.csproj">
       <Project>{EDD957B9-9E02-464F-810A-C8A09AB2D03A}</Project>

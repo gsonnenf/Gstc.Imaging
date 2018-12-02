@@ -1,34 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Gstc.Imaging.Demo.Images;
 using Gstc.Imaging.Fits;
 using Gstc.Imaging.Net;
+using Gstc.Imaging.UnitTest.Images;
+using Gtsc.Imaging.OpenCv.Extensions;
+using OpenCvSharp;
 
 namespace Gstc.Imaging.Demo {
     /// <summary>
     /// Interaction logic for FitsControl.xaml
     /// </summary>
     public partial class FitsControl : UserControl {
-        private IpcImage _ipcImage;
-        private InteropBitmap _interopBitmap;
+       
         public FitsControl() {
             InitializeComponent();
-            _ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024x1024_32f);
-            _interopBitmap = _ipcImage.GetInteropBitmap();
-            ImageWpf.Source = _interopBitmap;
+            LoadSingleChannel();
+            LoadMultiChannel();
+        }
+
+        private void LoadSingleChannel() {
+            var ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024X1024Float32);
+
+            ListViewSingle.ItemsSource = ipcImage.FitsData.HeaderCardDictionary;
+
+            ProcessImage(ipcImage);
+            var mat = ipcImage.GetOpenCv();
+            mat.MinMaxLoc(out double min, out double max);
+            
+            ImageSingle.Source = ipcImage.GetInteropBitmap();
+
+        }
+
+        private void LoadMultiChannel() {
+            var ipcImageList = IpcImageFits.LoadFromFileMultiChannel(ImageUris.FitsMultiChannel200X200Float32);
+
+            foreach (var ipcImage in ipcImageList) ProcessImage(ipcImage);
+           
+            Image1.Source = ipcImageList[0].GetInteropBitmap();
+            Image2.Source = ipcImageList[1].GetInteropBitmap();
+            Image3.Source = ipcImageList[2].GetInteropBitmap();
+            Image4.Source = ipcImageList[3].GetInteropBitmap();
+        }
+
+        private void ProcessImage(IpcImage ipcImage)
+        {
+            var mat = ipcImage.GetOpenCv();
+            mat.MinMaxLoc(out double min, out double max);
+
+
+
+            //Console.WriteLine("1-ipc:" + _ipcImage.GetPixelValue(0,10));
+            //Cv2.Divide(mat, -1, mat);
+            Console.WriteLine("Pixel:" + mat.Get<Single>(0, 10));
+            Cv2.Subtract(mat, -1 * min, mat);
+            Cv2.Log(mat, mat);
+            Cv2.Normalize(mat, mat);
+
+        }
+
+        private void ImageSingle_OnMouseMove(object sender, MouseEventArgs e) {
+
+            e.GetPosition(ImageSingle);
+
         }
     }
 }

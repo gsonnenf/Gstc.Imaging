@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 
 using System.Windows.Media.Imaging;
-using Gstc.Imaging.Demo.Images;
 using Gstc.Imaging.Net;
+using Gstc.Imaging.UnitTest.Images;
 
 namespace Gstc.Imaging.Demo {
     /// <summary>

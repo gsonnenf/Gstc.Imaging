@@ -9,10 +9,10 @@ namespace Gstc.Imaging {
     public class IpcPixelFormatDefault : IpcPixelFormat {
         public IpcChannelDataType IpcChannelDataType { get; set; }
 
-        internal IpcPixelFormatDefault(int channelsPerPixel, int bitsPerChannel, IpcChannelDataType ipcChannelDataType,
-            IpcPixelFormatType type) {
+        internal IpcPixelFormatDefault(int channelsPerPixel, int bitsPerChannel, IpcChannelDataType ipcChannelDataType, IpcPixelFormatType type) {
             ChannelsPerPixel = channelsPerPixel;
             BitsPerChannel = bitsPerChannel;
+            IpcChannelDataType = ipcChannelDataType;
             IpcPixelFormatType = type;
             BitsPerPixel = channelsPerPixel * bitsPerChannel;
             BytesPerPixel = (int)Math.Round((double)BitsPerPixel / 8);

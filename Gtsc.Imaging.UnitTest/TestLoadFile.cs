@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Gstc.Imaging;
-using Gtsc.Imaging.UnitTest.Images;
+using Gstc.Imaging.UnitTest.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gtsc.Imaging.UnitTest {
@@ -10,7 +10,7 @@ namespace Gtsc.Imaging.UnitTest {
         [TestMethod]
         public void LoadImageTestBgr32() {
 
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.BGR32);
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.Bgr32);
 
             Console.WriteLine(ipcImage.Info());
             unsafe {
@@ -35,8 +35,7 @@ namespace Gtsc.Imaging.UnitTest {
 
         [TestMethod]
         public void LoadImageTestBgr24() {
-
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.BGR24);
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile(ImageUris.Bgr24);
 
             Console.WriteLine(ipcImage.Info());
 
@@ -63,7 +62,7 @@ namespace Gtsc.Imaging.UnitTest {
         [TestMethod]
         public void LoadImageTestGrayScale8Bpp() {
 
-            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile( ImageUris.Grayscale8bpp );
+            IpcImageFileMapped ipcImage = IpcImageFileMapped.LoadFromFile( ImageUris.Grayscale8Bpp );
 
             Console.WriteLine(ipcImage.Info());
             unsafe {

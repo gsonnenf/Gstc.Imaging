@@ -1,5 +1,5 @@
 ﻿using System;
-using Gstc.Imaging.Fits.UnitTest.Images;
+using Gstc.Imaging.UnitTest.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gstc.Imaging.Fits.UnitTest {
@@ -7,11 +7,12 @@ namespace Gstc.Imaging.Fits.UnitTest {
     public class UnitTest1 {
         [TestMethod]
         public void LoadSingleFrame() {
-            IpcImageFits ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024x1024_32f);
+            var ipcImage = IpcImageFits.LoadFromFileSingleChannel(ImageUris.FitsSingleChannel1024X1024Float32);
         }
 
+        [TestMethod]
         public void LoadMultipleFrames() {
-            IpcImageFits ipcImage = IpcImageFits.LoadFromFile(ImageUris.FitsSingleChannel1024x1024_32f);
+            var ipcImageList = IpcImageFits.LoadFromFileMultiChannel(ImageUris.FitsMultiChannel200X200Float32);           
         }
     }
 }

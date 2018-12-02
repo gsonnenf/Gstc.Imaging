@@ -40,7 +40,7 @@ namespace Gtsc.Imaging.OpenCv {
         }
 
         public override IntPtr DataPtr => _mat.DataStart;
-        public override IntPtr SectionPtr { get; }
+        public override IntPtr MapPtr { get; }
         public override int Width => _mat.Cols;
         public override int Height => _mat.Rows;
         public override int PaddingBytes { get; }

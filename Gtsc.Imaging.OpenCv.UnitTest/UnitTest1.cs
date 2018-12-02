@@ -1,7 +1,7 @@
 ﻿using System;
 using Gstc.Imaging;
+using Gstc.Imaging.UnitTest.Images;
 using Gtsc.Imaging.OpenCv.Extensions;
-using Gtsc.Imaging.OpenCv.UnitTest.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenCvSharp;
 
@@ -10,7 +10,7 @@ namespace Gtsc.Imaging.OpenCv.UnitTest {
     public class LoadMatImage {
         [TestMethod]
         public void TestMatImageLoad() {
-            var image = IpcImage.LoadFromFile(ImageUris.BGR32);
+            var image = IpcImage.LoadFromFile(ImageUris.Bgr32);
             var mat = image.GetOpenCv();
             Assert.AreEqual( image.Width, mat.Cols, "Width mismatch.");
             Assert.AreEqual(image.Height, mat.Height, "Height mismatch.");
@@ -34,7 +34,7 @@ namespace Gtsc.Imaging.OpenCv.UnitTest {
 
         [TestMethod]
         public void TestMatImageOperation() {
-            var image = IpcImage.LoadFromFile(ImageUris.BGR32);
+            var image = IpcImage.LoadFromFile(ImageUris.Bgr32);
             var mat = image.GetOpenCv();
 
             //In place operations may not work for convolutions as the row/column data changes with each pass

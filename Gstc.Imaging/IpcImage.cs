@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -10,7 +11,7 @@ namespace Gstc.Imaging {
       
 
         public abstract IntPtr DataPtr { get; }
-        public abstract IntPtr SectionPtr { get; }
+        public abstract IntPtr MapPtr { get; }
         public abstract int BufferSize { get; }
         public abstract int Width { get; }
         public abstract int Height { get; }
@@ -32,7 +33,12 @@ namespace Gstc.Imaging {
         }
 
         public void Update() => OnUpdate?.Invoke();
-  
+
+        public Single GetPixelValue(int height, int width) {
+            Single[] b = new Single[1000];
+            Marshal.Copy(DataPtr,b,0,1000);
+            return b[10];
+        }
 
         public string Info() {
             var info = "";

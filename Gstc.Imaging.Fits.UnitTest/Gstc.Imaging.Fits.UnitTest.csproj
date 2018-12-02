@@ -48,23 +48,20 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\ImageUris.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\FOCx38i0101t_c0f.fits">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Images\WFPC2u5780205r_c0fx.fits">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gstc.Imaging.Fits\Gstc.Imaging.Fits.csproj">
       <Project>{b6590886-c271-4cd5-8b46-1f3682c64813}</Project>
       <Name>Gstc.Imaging.Fits</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gstc.Imaging.UnitTest.Images\Gstc.Imaging.UnitTest.Images.csproj">
+      <Project>{5C902526-9848-4D8C-8E52-630B52F6849E}</Project>
+      <Name>Gstc.Imaging.UnitTest.Images</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gstc.Imaging\Gstc.Imaging.csproj">
       <Project>{EDD957B9-9E02-464F-810A-C8A09AB2D03A}</Project>

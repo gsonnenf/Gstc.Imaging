@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using Gstc.Imaging.Demo.Images;
 using Gstc.Imaging.Extensions;
 using Gstc.Imaging.Net;
+using Gstc.Imaging.UnitTest.Images;
 using Image = System.Drawing.Image;
 
 namespace Gstc.Imaging.Demo {

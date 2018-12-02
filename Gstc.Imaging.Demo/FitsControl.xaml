@@ -8,6 +8,36 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
         <Button DockPanel.Dock="Bottom"  >No Op.</Button>
-        <Image Name="ImageWpf"></Image>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" LastChildFill="True">
+                <DockPanel Width="400px" DockPanel.Dock="Right" LastChildFill="True">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <TextBox Height="20px" Name="BoxX">123</TextBox>
+                        <TextBox Name="BoxY">123</TextBox>
+                    </StackPanel>
+                    <ListView Name="ListViewSingle">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Key}" />
+                                <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value}" />
+                                <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding Comment}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    
+                </DockPanel>
+                <Image MouseMove="ImageSingle_OnMouseMove" Name="ImageSingle"></Image>
+            </DockPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Image Name="Image1"></Image>
+                <Image Name="Image2"></Image>
+                <Image Name="Image3"></Image>
+                <Image Name="Image4"></Image>
+            </StackPanel>
+        </Grid>
     </DockPanel>
 </UserControl>
